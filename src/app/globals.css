@@ -13,6 +13,11 @@
     --foreground: #ededed;
   }
 }
+html,body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 body {
   color: var(--foreground);

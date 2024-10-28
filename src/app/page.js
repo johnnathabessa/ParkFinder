@@ -1,3 +1,4 @@
+"use client"
 import Button from "@/components/Button/Button";
 import InputWithLabel from "@/components/InputWithLabel/InputWithLabel";
 import Image from "next/image";
@@ -31,7 +32,7 @@ export default function Home() {
             autocomplete="current-password"
             />
           
-            <Button text="Login" />
+            <Button>Entrar</Button>
         </form>
       </div>
     </div>

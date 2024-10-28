@@ -4,13 +4,19 @@ import Button from "@/components/Button/Button";
 import { Trash } from "@phosphor-icons/react/dist/ssr";
 import ModalWithBackdrop from "@/components/ModalWithBackdrop/ModalwithBackdrop";
 import { useState } from "react";
+import InputWithLabel from "@/components/InputWithLabel/InputWithLabel";
 
 export default function ParkPage() {
     const [showModal, setShowModal] = useState(false)
     return (
         <div className="flex relative min-h-full items-center flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <SideBar />
-            <ModalWithBackdrop show={showModal} onClose={() => setShowModal(false)}></ModalWithBackdrop>
+            <ModalWithBackdrop show={showModal} onClose={() => setShowModal(false)}>
+                <div className="flex flex-col space-y-4">
+                    <InputWithLabel label="N° da Vaga" type="number" />
+                    <Button>Salvar</Button>
+                </div>
+            </ModalWithBackdrop>
             <div className="flex flex-col flex-grow w-full justify-start items-end pl-24">
                 <div className="flex">
                     <Button onClick={() => setShowModal(true)}> Adicionar Vaga </Button>

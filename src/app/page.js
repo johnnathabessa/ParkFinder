@@ -1,9 +1,34 @@
 "use client"
 import Button from "@/components/Button/Button";
 import InputWithLabel from "@/components/InputWithLabel/InputWithLabel";
-import Image from "next/image";
+import { URL_API } from "@/utils/constants/serviceConstants";
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  function login(){
+    const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "email": email,
+  "password": password
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch(URL_API + "/auth/login", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+  }
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -19,6 +44,7 @@ export default function Home() {
             id="email"
             name="email"
             type="email"
+            onChange={(e) => setEmail(e.target.value)}
             required
             autocomplete="email"
             />
@@ -32,7 +58,7 @@ export default function Home() {
             autocomplete="current-password"
             />
           
-            <Button>Entrar</Button>
+            <Button onClick={login}>Entrar</Button>
         </form>
       </div>
     </div>
